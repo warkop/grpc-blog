@@ -90,16 +90,16 @@ func main() {
 	defer cancel()
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer func() {
 		if err = client.Disconnect(ctx); err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 	}()
 	// Ping the primary
 	if err := client.Ping(ctx, readpref.Primary()); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	collection = client.Database(db).Collection(col)
