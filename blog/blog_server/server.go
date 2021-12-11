@@ -226,7 +226,7 @@ func (*server) ListBlog(req *blogpb.ListBlogRequest, stream blogpb.BlogService_L
 	if err != nil {
 		return status.Errorf(
 			codes.Internal,
-			fmt.Sprintf("unknown internal error: %v", err),
+			fmt.Sprintf("error while get data from mongodb: %v", err),
 		)
 	}
 	defer cur.Close(context.Background())
